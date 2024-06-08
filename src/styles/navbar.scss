@@ -1,0 +1,32 @@
+.navbar {
+    position: sticky;
+
+    &__links {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;;
+    }
+    &__cart {
+        border: 1px solid #007bff;
+        border-radius: 50%;
+        height: 3rem;
+        position: relative;
+        width: 3rem;
+
+        div {
+            align-items: center;
+            background-color: red;
+            border-radius: 50%;
+            bottom: 0;
+            color: #fff;
+            display: flex;
+            height: 1.5rem;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            transform: translate(25%, 25%);
+            width: 1.5rem;
+        }
+
+    }
+}
