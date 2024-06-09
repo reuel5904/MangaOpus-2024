@@ -1,3 +1,4 @@
+import { useShoppingCart } from "../context/ShoppingCartContext"
 import { formatCurrency } from "../utilities/formatCurrency"
 
 type StoreItemProps = {
@@ -11,7 +12,8 @@ type StoreItemProps = {
 }
 
 export function StoreItem({ id, title, url, originalPrice }: StoreItemProps) {
-    const quantity = 0;
+    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart(); 
+    const quantity = getItemQuantity(id);
 
     return (
         <div className="card" data-book-id={id}>
@@ -24,16 +26,16 @@ export function StoreItem({ id, title, url, originalPrice }: StoreItemProps) {
                 <div className="card__content--cart">
                     {quantity === 0 ? 
                     (
-                        <button className="card__content--cart-button">+ Add to Cart</button>
+                        <button className="card__content--cart-button" onClick={() => increaseCartQuantity(id)}>+ Add to Cart</button>
                     ) : (
                         <>
                             <div className="card__content--cart-quantity">
-                                <button className="card__content--cart-quantity-button">-</button>
+                                <button className="card__content--cart-quantity-button" onClick={() => decreaseCartQuantity(id)}>-</button>
                                 <span className="card__content--cart-quantity-amount">{quantity} in cart</span>
-                                <button className="card__content--cart-quantity-button">+</button>
+                                <button className="card__content--cart-quantity-button"onClick={() => increaseCartQuantity(id)}>+</button>
                             </div>
                             <div className="card__content--cart-remove">
-                                <button className="card__content--cart-remove-button">Remove</button>
+                                <button className="card__content--cart-remove-button" onClick={() => removeFromCart(id)}>Remove</button>
                             </div>
                         </>
                     )}
